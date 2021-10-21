@@ -1,18 +1,13 @@
 import React, {useEffect} from 'react';
 import {
   Text,
-  Button,
-  TextInput,
   StyleSheet,
-  Alert,
   View,
   Image,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAllCharacters} from '../actions/charecters';
-import {SET_TEST} from '../constants/actionTypes';
 import * as actionTypes from '../constants/actionTypes';
 import Icon from 'react-native-vector-icons/Ionicons';
 

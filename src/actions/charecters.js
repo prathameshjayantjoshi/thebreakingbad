@@ -1,13 +1,10 @@
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {api} from '../config';
 import * as actionTypes from '../constants/actionTypes';
 
 export const getAllCharacters = () => async dispatch => {
   return axios
     .get(`https://breakingbadapi.com/api/characters`)
     .then(res => {
-      console.log('Rsponcecheck', res.data);
       res.data.forEach((item, index) => {
         item.favourite = false;
       });
@@ -38,7 +35,7 @@ export const getAllCharacters = () => async dispatch => {
     });
 };
 
-export const searchCharacters = async (value) => {
+export const searchCharacters = async value => {
   return axios
     .get(`https://breakingbadapi.com/api/characters?name=${value}`)
     .then(res => {

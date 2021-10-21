@@ -1,26 +1,20 @@
 import React, {useEffect} from 'react';
 import {
   Text,
-  Button,
   TextInput,
   StyleSheet,
-  Alert,
   View,
   Image,
   FlatList,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {getAllCharacters, searchCharacters} from '../actions/charecters';
-import {SET_TEST} from '../constants/actionTypes';
+import {searchCharacters} from '../actions/charecters';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Search = props => {
   const [data, setData] = React.useState([]);
   const [text, setText] = React.useState([]);
-
-  const dispatch = useDispatch();
-  const DATA = useSelector(state => state.auth.characters);
 
   const EditFavoutite = item => {
     let list = data;
@@ -32,9 +26,13 @@ const Search = props => {
   };
 
   const searchData = value => {
-    searchCharacters(value).then(res => {
-      setData(res);
-    });
+    searchCharacters(value)
+      .then(res => {
+        setData(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const renderItem = ({item}) => (
@@ -90,6 +88,7 @@ const Search = props => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#242424'}}>
+      <StatusBar backgroundColor="#2c2c2c" barStyle="light-content" />
       <View style={{flexDirection: 'row', backgroundColor: '#2c2c2c'}}>
         <TextInput
           style={styles.input}

@@ -1,19 +1,18 @@
 import React, {useEffect} from 'react';
 import {
   Text,
-  Button,
-  TextInput,
   StyleSheet,
-  Alert,
   View,
   Image,
   FlatList,
   TouchableOpacity,
+  Dimensions,
+  ScrollView,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAllCharacters} from '../actions/charecters';
 import * as actionTypes from '../constants/actionTypes';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 const DetailScreen = props => {
   const item = props.route.params;
 
@@ -21,7 +20,6 @@ const DetailScreen = props => {
   const DATA = useSelector(state => state.auth.characters);
   const [data, setData] = React.useState(DATA);
   const [otherCharacters, setOtherCharacters] = React.useState([]);
-  //   const DATA = ['a', 'b'];
 
   useEffect(() => {
     let tempData = [];
@@ -52,7 +50,7 @@ const DetailScreen = props => {
       <Text
         style={{
           color: '#FFFFFF',
-          fontSize: 12,
+          fontSize: 13,
           fontFamily: 'Roboto-Medium',
           textAlign: 'center',
           padding: 5,
@@ -104,20 +102,26 @@ const DetailScreen = props => {
   );
 
   return (
-    <View style={{flex: 1, backgroundColor: '#242424'}}>
+    <ScrollView style={{flex: 1, backgroundColor: '#242424'}}>
       <Image
-        style={{flex: 1}}
+        style={{height:Dimensions.get("screen").height/2}}
         source={{
           uri: item.img,
         }}
       />
+      {/* <Image
+        style={{flex: 1}}
+        source={{
+          uri: item.img,
+        }}
+      /> */}
       <Image
         style={{
           height: 130,
           width: 130,
           position: 'absolute',
           alignSelf: 'center',
-          marginTop: '16%',
+          marginTop: Dimensions.get("screen").height/2 - 140,
         }}
         source={{
           uri: item.img,
@@ -183,7 +187,7 @@ const DetailScreen = props => {
           <Text
             style={{
               fontFamily: 'Roboto-Light',
-              fontSize: 12,
+              fontSize: 14,
               color: '#FFFFFF',
             }}>
             {item?.portrayed}
@@ -192,10 +196,11 @@ const DetailScreen = props => {
             <Text
               style={{
                 fontFamily: 'Roboto-Light',
-                fontSize: 12,
+                fontSize: 14,
                 color: '#FFFFFF',
               }}>
-              {item?.birthday}{'  '}
+              {item?.birthday}
+              {'  '}
             </Text>
             <Icon size={13} color="white" name="gift-outline" />
           </View>
@@ -210,7 +215,7 @@ const DetailScreen = props => {
           <Text
             style={{
               fontFamily: 'Roboto-Light',
-              fontSize: 12,
+              fontSize: 14,
               color: '#FFFFFF',
             }}>
             {item?.occupation[0]}
@@ -218,7 +223,7 @@ const DetailScreen = props => {
           <Text
             style={{
               fontFamily: 'Roboto-Light',
-              fontSize: 12,
+              fontSize: 14,
               color: '#FFFFFF',
               marginTop: 5,
             }}>
@@ -238,7 +243,7 @@ const DetailScreen = props => {
           keyExtractor={item => item}
         />
       </View>
-      <View style={{marginHorizontal: 15, marginTop: 20}}>
+      <View style={{marginHorizontal: 15, marginTop: 30}}>
         <Text
           style={{fontFamily: 'Roboto-Medium', fontSize: 12, color: '#18CA75'}}>
           Other Charecters
@@ -250,7 +255,7 @@ const DetailScreen = props => {
           keyExtractor={item => item.char_id}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

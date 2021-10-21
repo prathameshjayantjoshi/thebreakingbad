@@ -3,8 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
 import DetailScreen from '../screens/DetailScreen';
-import {useSelector, useDispatch} from 'react-redux';
-import { getAllCharacters } from '../actions/charecters';
+import {useDispatch} from 'react-redux';
+import {getAllCharacters} from '../actions/charecters';
 import Favourite from '../screens/Favourite';
 
 const RootStack = createStackNavigator();

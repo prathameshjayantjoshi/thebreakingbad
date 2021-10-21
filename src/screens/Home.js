@@ -1,18 +1,13 @@
 import React, {useEffect} from 'react';
 import {
   Text,
-  Button,
-  TextInput,
-  StyleSheet,
-  Alert,
   View,
   Image,
   FlatList,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAllCharacters} from '../actions/charecters';
-import {SET_TEST} from '../constants/actionTypes';
 import * as actionTypes from '../constants/actionTypes';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -21,8 +16,8 @@ const Home = props => {
   const DATA = useSelector(state => state.auth.characters);
   const [data, setData] = React.useState(DATA);
 
-   useEffect(() => {
-     setData(DATA)
+  useEffect(() => {
+    setData(DATA);
   }, []);
 
   const EditFavoutite = item => {
@@ -94,6 +89,7 @@ const Home = props => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#242424'}}>
+      <StatusBar backgroundColor="#242424" barStyle="light-content" />
       <View style={{flexDirection: 'row', marginTop: 10}}>
         <Text
           style={{
@@ -101,14 +97,22 @@ const Home = props => {
             fontSize: 20,
             color: '#FFFFFF',
             flex: 0.8,
-            marginLeft:15
+            marginLeft: 15,
           }}>
           The Breaking Bad
         </Text>
-        <TouchableOpacity onPress={()=>{props.navigation.navigate('Search')}} style={{flex: 0.1}}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate('Search');
+          }}
+          style={{flex: 0.1}}>
           <Icon size={24} color="white" name="search-outline" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>{props.navigation.navigate('Favourite')}} style={{flex: 0.1}}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate('Favourite');
+          }}
+          style={{flex: 0.1}}>
           <Image source={require('../assets/images/HEART_FILLED.png')} />
         </TouchableOpacity>
       </View>
@@ -121,6 +125,5 @@ const Home = props => {
     </View>
   );
 };
-
 
 export default Home;

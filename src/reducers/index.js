@@ -3,5 +3,5 @@ import auth from './auth';
 
 export default combineReducers({
   auth: auth,
-//   notification: notification
+//   otherReducer: otherReducer
 });

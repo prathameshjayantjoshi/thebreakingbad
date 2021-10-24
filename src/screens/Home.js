@@ -37,7 +37,7 @@ const Home = props => {
     <View style={{flex: 0.5, marginHorizontal: 15, marginVertical: 20}}>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate('Detail', item);
+          props.navigation.push('Detail', item);
         }}>
         <Image
           style={{height: 150, width: 150}}

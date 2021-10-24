@@ -14,11 +14,33 @@ function AppRouteNavigator() {
   useEffect(() => {
     dispatch(getAllCharacters());
   }, []);
+  
+const horizontalAnimation = {
+  gestureDirection: 'horizontal',
+  headerShown:false,
+  cardStyleInterpolator: ({ current, layouts }) => {
+    return {
+      cardStyle: {
+        transform: [
+          {
+            translateX: current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [layouts.screen.width, 0],
+            }),
+          },
+        ],
+      },
+    };
+  },
+};
   return (
     <RootStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
+    // mode="card"
+      // screenOptions={{
+      //   headerShown: false,
+      // }}
+      screenOptions={horizontalAnimation}
+      >
       <RootStack.Screen name="Home" component={Home} />
       <RootStack.Screen name="Detail" component={DetailScreen} />
       <RootStack.Screen name="Search" component={Search} />

@@ -37,14 +37,14 @@ const Search = props => {
 
   const renderItem = ({item}) => (
     <View style={{flex: 0.5, marginHorizontal: 15, marginVertical: 20}}>
-      <TouchableOpacity>
+      <View>
         <Image
-          style={{height: 150, width: 150}}
+          style={{height: 150}}
           source={{
             uri: item.img,
           }}
         />
-      </TouchableOpacity>
+      </View>
       <View
         style={{
           flex: 1,
@@ -96,7 +96,8 @@ const Search = props => {
           placeholderTextColor={'#FFFFFF'}
           onChangeText={text => {
             setText(text);
-            searchData(text);
+            if (text.length > 2) searchData(text);
+            if (text.length <= 2) setData([]);
           }}
           value={text}
         />

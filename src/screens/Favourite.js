@@ -22,11 +22,24 @@ const Favourite = props => {
 
   const checkFavourite = () => {
     let tempData = [];
-    for (let i = 0; i < DATA.length; i++) {
-      if (DATA[i].favourite) {
-        tempData.push(DATA[i]);
+    // ########## This is done using for loop
+    // for (let i = 0; i < DATA.length; i++) {
+    //   if (DATA[i].favourite) {
+    //     tempData.push(DATA[i]);
+    //   }
+    // }
+    // ########## This is done using map function
+    // DATA.map(function (item) {
+    //   if (item.favourite) {
+    //     tempData.push(item);
+    //   }
+    // });
+    // ########## This is done using filter function
+    DATA.filter(item => {
+      if (item.favourite) {
+        tempData.push(item);
       }
-    }
+    });
     setData(tempData);
   };
 
